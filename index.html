@@ -1,1 +1,35 @@
-Success！
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豬皮速報</title>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(async function(OneSignal) {
+        await OneSignal.init({
+          appId: "9f247c0b-e7f0-43c3-93eb-69cfde76195d", // 記得換掉！
+          allowLocalhostAsSecureOrigin: true,
+        });
+      });
+
+      // 建立一個獨立的觸發函數，確保 OneSignal 已經加載
+      function subscribe() {
+        OneSignalDeferred.push(function(OneSignal) {
+          OneSignal.Notifications.requestPermission();
+        });
+      }
+    </script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background: #fafafa; }
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>📢 歡迎訂閱豬皮速報</h1>
+    <p>點擊下方按鈕，第一時間接收最新消息！</p>
+    <button onclick="subscribe()">🔔 點我開啟通知</button>
+</body>
+</html>
+
